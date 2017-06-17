@@ -9,19 +9,26 @@ namespace ProjectManager.Framework.Core
 {
     public class Engine : IEngine
     {
-        private FileLogger logger;
-        private CommandProcessor processor;
+        private IProcessor processor;
+        private IReader reader;
+        private IWriter writer;
 
-        public Engine(IReader reader, IWriter writer)
+        public Engine(IReader reader, IWriter writer, IProcessor processor)
         {
-            this.processor = new CommandProcessor(new CommandsFactory());
+            Guard.WhenArgument(reader, "reader").IsNull().Throw();
+            Guard.WhenArgument(writer, "writer").IsNull().Throw();
+            Guard.WhenArgument(processor, "processor").IsNull().Throw();
+
+            this.reader = reader;
+            this.writer = writer;
+            this.processor = processor;
         }
 
         public void Start()
         {
             for (;;)
             {
-                var commandLine = Console.ReadLine();
+                var commandLine = reader.ReadLine();
 
                 if (commandLine.ToLower() == "exit")
                 {
@@ -32,17 +39,16 @@ namespace ProjectManager.Framework.Core
                 try
                 {
                     var executionResult = this.processor.ProcessCommand(commandLine);
-                    Console.WriteLine(executionResult);
+                    writer.WriteLine(executionResult);
                 }
                 catch (UserValidationException ex)
                 {
-                    this.logger.Error(ex.Message);
-                    Console.WriteLine(ex.Message);
+                   
+                    writer.WriteLine(ex.Message);
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Opps, something happened. Check the log file :(");
-                    this.logger.Error(ex.Message);
+                    writer.WriteLine(ex.Message.ToString());
                 }
             }
         }

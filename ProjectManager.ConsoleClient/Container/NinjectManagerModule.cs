@@ -6,6 +6,8 @@ using ProjectManager.Framework.Core.Commands.Factories;
 using ProjectManager.Framework.Core.Common.Contracts;
 using ProjectManager.Framework.Core.Common.Providers;
 using ProjectManager.Framework.Data;
+using ProjectManager.Framework.Data.Factories;
+
 
 namespace ProjectManager.Configs
 {
@@ -18,7 +20,14 @@ namespace ProjectManager.Configs
             this.Bind<ICommandsFactory>().To<CommandsFactory>().InSingletonScope();
 
             this.Bind<IWriter>().To<Writer>().InSingletonScope();
-            this.Bind<IReader>().To<Reader>().InSingletonScope(); 
+            this.Bind<IReader>().To<Reader>().InSingletonScope();
+            this.Bind<IProcessor>().To<CommandProcessor>().InSingletonScope();
+            this.Bind<IValidator>().To<Validator>().InSingletonScope();
+            this.Bind<IModelsFactory>().To<ModelsFactory>().InSingletonScope();
+
+
+
+
         }
     }
 }

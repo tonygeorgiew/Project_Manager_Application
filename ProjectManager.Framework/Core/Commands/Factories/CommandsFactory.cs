@@ -10,7 +10,6 @@ namespace ProjectManager.Framework.Core.Commands.Factories
 {
     public class CommandsFactory : ICommandsFactory
     {
-        private readonly IDatabase database;
         private readonly ModelsFactory factory;
 
         public CommandsFactory()
