@@ -7,43 +7,14 @@ using System;
 
 namespace ProjectManager.Framework.Core
 {
-    public class Engine
+    public class Engine : IEngine
     {
         private FileLogger logger;
         private CommandProcessor processor;
 
-        public Engine(FileLogger logger)
+        public Engine(IReader reader, IWriter writer)
         {
-            this.logger = logger;
             this.processor = new CommandProcessor(new CommandsFactory());
-        }
-
-        public FileLogger Loogger
-        {
-            get
-            {
-                return this.logger;
-            }
-
-            set
-            {
-                Guard.WhenArgument(value, "Engine Logger provider").IsNull().Throw();
-                this.logger = value;
-            }
-        }
-
-        public CommandProcessor Processor
-        {
-            get
-            {
-                return this.processor;
-            }
-
-            set
-            {
-                Guard.WhenArgument(value, "Engine Processor provider").IsNull().Throw();
-                this.processor = value;
-            }
         }
 
         public void Start()

@@ -1,0 +1,9 @@
+C:\Projects\PM Application\ProjectManager.Framework\bin\Debug\ProjectManager.Framework.dll.config
+C:\Projects\PM Application\ProjectManager.Framework\bin\Debug\ProjectManager.Framework.dll
+C:\Projects\PM Application\ProjectManager.Framework\bin\Debug\ProjectManager.Framework.pdb
+C:\Projects\PM Application\ProjectManager.Framework\bin\Debug\Bytes2you.Validation.dll
+C:\Projects\PM Application\ProjectManager.Framework\obj\Debug\ProjectManager.Framework.csprojResolveAssemblyReference.cache
+C:\Projects\PM Application\ProjectManager.Framework\obj\Debug\ProjectManager.Framework.Properties.Resources.resources
+C:\Projects\PM Application\ProjectManager.Framework\obj\Debug\ProjectManager.Framework.csproj.GenerateResource.Cache
+C:\Projects\PM Application\ProjectManager.Framework\obj\Debug\ProjectManager.Framework.dll
+C:\Projects\PM Application\ProjectManager.Framework\obj\Debug\ProjectManager.Framework.pdb

@@ -1,6 +1,9 @@
-﻿using ProjectManager.ConsoleClient.Configs;
+﻿using Ninject;
+using ProjectManager.Configs;
+using ProjectManager.ConsoleClient.Configs;
 using ProjectManager.Framework.Core;
 using ProjectManager.Framework.Core.Commands.Factories;
+using ProjectManager.Framework.Core.Common.Contracts;
 using ProjectManager.Framework.Core.Common.Providers;
 using ProjectManager.Framework.Data;
 using ProjectManager.Framework.Data.Factories;
@@ -12,12 +15,9 @@ namespace ProjectManager.ConsoleClient
     {
         public static void Main()
         {
-            var configProvider = new ConfigurationProvider();
+            IKernel kernel = new StandardKernel(new NinjectManagerModule());
 
-            var fileLogger = new FileLogger(configProvider.LogFilePath);
-
-            var engine = new Engine(fileLogger);
-
+            IEngine engine = kernel.Get<IEngine>();
             engine.Start();
         }
     }
