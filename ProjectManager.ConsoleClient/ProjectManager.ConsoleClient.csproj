@@ -67,6 +67,7 @@
     <Compile Include="Configs\ConfigurationProvider.cs" />
     <Compile Include="Configs\IConfigurationProvider.cs" />
     <Compile Include="Container\NinjectManagerModule.cs" />
+    <Compile Include="Container\ServiceLocator.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -75,6 +76,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Contracts\" />
     <Folder Include="Interceptors\" />
   </ItemGroup>
   <ItemGroup>

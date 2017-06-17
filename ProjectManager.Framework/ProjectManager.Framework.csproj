@@ -50,6 +50,7 @@
     <Compile Include="Core\Commands\Abstracts\CreationalCommand.cs" />
     <Compile Include="Core\Commands\Contracts\ICommand.cs" />
     <Compile Include="Core\Commands\Contracts\ICommandsFactory.cs" />
+    <Compile Include="Core\Commands\Contracts\IServiceLocator.cs" />
     <Compile Include="Core\Commands\Creational\CreateProjectCommand.cs" />
     <Compile Include="Core\Commands\Creational\CreateTaskCommand.cs" />
     <Compile Include="Core\Commands\Creational\CreateUserCommand.cs" />
