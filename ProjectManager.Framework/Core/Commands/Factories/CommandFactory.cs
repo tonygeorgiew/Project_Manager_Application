@@ -13,7 +13,6 @@ namespace ProjectManager.Framework.Core.Commands.Factories
     public class CommandFactory : ICommandFactory
     {
         private readonly IServiceLocator serviceLocator;
-
         public CommandFactory(IServiceLocator serviceLocator)
         {
             Guard.WhenArgument(serviceLocator, "serviceLocator").IsNull().Throw();

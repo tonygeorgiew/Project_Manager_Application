@@ -10,8 +10,7 @@ namespace ProjectManager.Framework.Core
     public class Engine : IEngine
     {
         private const string TerminationCommand = "exit";
-
-
+        
         private IProcessor processor;
         private IReader reader;
         private IWriter writer;
@@ -31,7 +30,7 @@ namespace ProjectManager.Framework.Core
         {
             for (;;)
             {
-                var commandLine = reader.ReadLine();
+                var commandLine = this.reader.ReadLine();
 
                 if (commandLine.ToLower() == TerminationCommand)
                 {
@@ -39,19 +38,7 @@ namespace ProjectManager.Framework.Core
                     break;
                 }
 
-                try
-                {
-                    var executionResult = this.processor.ProcessCommand(commandLine);
-                    writer.WriteLine(executionResult);
-                }
-                catch (UserValidationException ex)
-                {
-                    writer.WriteLine(ex.Message);
-                }
-                catch (Exception ex)
-                {
-                    writer.WriteLine(ex.Message.ToString());
-                }
+                this.processor.ProcessCommand(commandLine);
             }
         }
     }

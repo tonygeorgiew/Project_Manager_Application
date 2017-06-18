@@ -10,7 +10,7 @@ namespace ProjectManager.Framework.Core.Common.Providers
 {
     public class CommandProcessor : IProcessor
     {
-        private ICommandFactory commandFactory;
+        private readonly ICommandFactory commandFactory;
 
         public CommandProcessor(ICommandFactory commandFactory)
         {

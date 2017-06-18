@@ -4,3 +4,12 @@ ERROR: Invalid command parameters count!
 FATAL: The method or operation is not implemented.
 FATAL: The method or operation is not implemented.
 ERROR: A project with that name already exists!
+FATAL: The method or operation is not implemented.
+FATAL: The method or operation is not implemented.
+FATAL: The method or operation is not implemented.
+FATAL: The method or operation is not implemented.
+FATAL: The method or operation is not implemented.
+FATAL: The method or operation is not implemented.
+FATAL: The method or operation is not implemented.
+ERROR: Invalid command parameters count!
+FATAL: Input string was not in a correct format.

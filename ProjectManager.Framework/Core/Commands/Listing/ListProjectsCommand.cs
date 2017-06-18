@@ -27,15 +27,14 @@ namespace ProjectManager.Framework.Core.Commands.Listing
 
         public override string Execute(IList<string> parameters)
         {
-            var projectId = int.Parse(parameters[0]);
-            if (this.Database.Projects.Count <= projectId || projectId < 0)
+            var projects = this.Database.Projects;
+
+            if (projects.Count == 0)
             {
-                throw new UserValidationException("The project is not present in the database");
+                return "No projects in the database!";
             }
 
-            var project = this.Database.Projects[projectId];
-
-            return project.ToString();
+            return string.Join(Environment.NewLine, projects);
         }
     }
 }

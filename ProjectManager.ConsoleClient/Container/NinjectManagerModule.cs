@@ -22,6 +22,12 @@ namespace ProjectManager.Configs
 {
     public class NinjectManagerModule : NinjectModule
     {
+        private const string CreateUserInternalName = "CreateUserInternal";
+        private const string CreateProjectInternalName = "CreateProjectInternal";
+        private const string CreateTaskInternalName = "CreateTaskInternal";
+        private const string ListProjectDetailsInternalName = "ListProjectDetailsInternal";
+        private const string ListProjectsInternalName = "ListProjectsInternal";
+
         private const string CacheableCommandName = "CacheableCommand";
 
         private const string CreateUserName = "CreateUser";
@@ -59,28 +65,28 @@ namespace ProjectManager.Configs
             // Models Factory
             this.Bind<IModelsFactory>().To<ModelsFactory>().InSingletonScope();
 
-            // Command Factory
-            this.Bind<IServiceLocator>().To<ServiceLocator>();
 
+            // Command Factory
+            this.Bind<IServiceLocator>().To<ServiceLocator>().InSingletonScope();
             this.Bind<ICommandFactory>().To<CommandFactory>().InSingletonScope();
 
-            this.Bind<ICommand>().To<CreateUserCommand>().Named(CreateUserName);
-            this.Bind<ICommand>().To<CreateProjectCommand>().Named(CreateProjectName);
-            this.Bind<ICommand>().To<CreateTaskCommand>().Named(CreateTaskName);
-            this.Bind<ICommand>().To<ListProjectDetailsCommand>().Named(ListProjectDetailsName);
-            this.Bind<ICommand>().To<ListProjectsCommand>().Named(ListProjectsName);
+            this.Bind<ICommand>().To<CreateUserCommand>().Named(CreateUserInternalName);
+            this.Bind<ICommand>().To<CreateProjectCommand>().Named(CreateProjectInternalName);
+            this.Bind<ICommand>().To<CreateTaskCommand>().Named(CreateTaskInternalName);
+            this.Bind<ICommand>().To<ListProjectDetailsCommand>().Named(ListProjectDetailsInternalName);
+            this.Bind<ICommand>().To<ListProjectsCommand>().Named(ListProjectsInternalName);
 
             this.Bind<ICommand>().To<CacheableCommand>().Named(CacheableCommandName)
-                .WithConstructorArgument(this.Kernel.Get<ICommand>(ListProjectsName));
+                .WithConstructorArgument(this.Kernel.Get<ICommand>(ListProjectsInternalName));
 
             this.Bind<ICommand>().To<ValidatableCommand>().Named(CreateUserName)
-                .WithConstructorArgument(this.Kernel.Get<ICommand>(CreateUserName));
+                .WithConstructorArgument(this.Kernel.Get<ICommand>(CreateUserInternalName));
             this.Bind<ICommand>().To<ValidatableCommand>().Named(CreateProjectName)
-                .WithConstructorArgument(this.Kernel.Get<ICommand>(CreateProjectName));
+                .WithConstructorArgument(this.Kernel.Get<ICommand>(CreateProjectInternalName));
             this.Bind<ICommand>().To<ValidatableCommand>().Named(CreateTaskName)
-                .WithConstructorArgument(this.Kernel.Get<ICommand>(CreateTaskName));
+                .WithConstructorArgument(this.Kernel.Get<ICommand>(CreateTaskInternalName));
             this.Bind<ICommand>().To<ValidatableCommand>().Named(ListProjectDetailsName)
-                .WithConstructorArgument(this.Kernel.Get<ICommand>(ListProjectDetailsName));
+                .WithConstructorArgument(this.Kernel.Get<ICommand>(ListProjectDetailsInternalName));
             this.Bind<ICommand>().To<ValidatableCommand>().Named(ListProjectsName)
                 .WithConstructorArgument(this.Kernel.Get<ICommand>(CacheableCommandName));
         }
