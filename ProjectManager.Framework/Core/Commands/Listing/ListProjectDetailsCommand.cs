@@ -11,7 +11,8 @@ namespace ProjectManager.Framework.Core.Commands.Listing
     {
         private const int ParameterCountConstant = 1;
 
-        public ListProjectDetailsCommand()
+        public ListProjectDetailsCommand(IDatabase database)
+            : base(database)
         {
         }
 
@@ -25,8 +26,6 @@ namespace ProjectManager.Framework.Core.Commands.Listing
 
         public override string Execute(IList<string> parameters)
         {
-            this.ValidateParameters(parameters);
-
             var projectId = int.Parse(parameters[0]);
             if (this.Database.Projects.Count <= projectId || projectId < 0)
             {

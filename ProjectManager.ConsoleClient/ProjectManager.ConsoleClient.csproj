@@ -68,6 +68,8 @@
     <Compile Include="Configs\IConfigurationProvider.cs" />
     <Compile Include="Container\NinjectManagerModule.cs" />
     <Compile Include="Container\ServiceLocator.cs" />
+    <Compile Include="Interceptors\InfoInterceptor.cs" />
+    <Compile Include="Interceptors\LogErrorInterceptor.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -77,7 +79,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Contracts\" />
-    <Folder Include="Interceptors\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ProjectManager.Framework\ProjectManager.Framework.csproj">

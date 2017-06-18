@@ -4,14 +4,16 @@ using System.Collections.Generic;
 using ProjectManager.Framework.Core.Commands.Abstracts;
 using ProjectManager.Framework.Core.Commands.Contracts;
 using ProjectManager.Framework.Data;
+using ProjectManager.Framework.Core.Common.Exceptions;
 
 namespace ProjectManager.Framework.Core.Commands.Listing
 {
-    public class ListProjectsCommand : Command, ICommand
+    public sealed class ListProjectsCommand : Command, ICommand
     {
         private const int ParameterCountConstant = 0;
 
-        public ListProjectsCommand()
+        public ListProjectsCommand(IDatabase database)
+            : base(database)
         {
         }
 
@@ -25,16 +27,15 @@ namespace ProjectManager.Framework.Core.Commands.Listing
 
         public override string Execute(IList<string> parameters)
         {
-            this.ValidateParameters(parameters);
-
-            var projects = this.Database.Projects;
-
-            if(projects.Count == 0)
+            var projectId = int.Parse(parameters[0]);
+            if (this.Database.Projects.Count <= projectId || projectId < 0)
             {
-                return "No projects in the database!";
+                throw new UserValidationException("The project is not present in the database");
             }
 
-            return string.Join(Environment.NewLine, projects);
+            var project = this.Database.Projects[projectId];
+
+            return project.ToString();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 using ProjectManager.Framework.Core.Commands.Abstracts;
 using ProjectManager.Framework.Core.Commands.Contracts;
@@ -11,8 +12,8 @@ namespace ProjectManager.Framework.Core.Commands.Creational
     {
         private const int ParameterCountConstant = 4;
 
-        public CreateTaskCommand(ModelsFactory factory) 
-            : base(factory)
+        public CreateTaskCommand(IDatabase database, ModelsFactory factory) 
+            : base(database, factory)
         {
         }
 
@@ -26,8 +27,6 @@ namespace ProjectManager.Framework.Core.Commands.Creational
         
         public override string Execute(IList<string> parameters)
         {
-            this.ValidateParameters(parameters);
-
             var projectId = int.Parse(parameters[0]);
             var project = this.Database.Projects[projectId];
 

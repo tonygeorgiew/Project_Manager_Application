@@ -9,6 +9,9 @@ namespace ProjectManager.Framework.Core
 {
     public class Engine : IEngine
     {
+        private const string TerminationCommand = "exit";
+
+
         private IProcessor processor;
         private IReader reader;
         private IWriter writer;
@@ -30,7 +33,7 @@ namespace ProjectManager.Framework.Core
             {
                 var commandLine = reader.ReadLine();
 
-                if (commandLine.ToLower() == "exit")
+                if (commandLine.ToLower() == TerminationCommand)
                 {
                     Console.WriteLine("Program terminated.");
                     break;
@@ -43,7 +46,6 @@ namespace ProjectManager.Framework.Core
                 }
                 catch (UserValidationException ex)
                 {
-                   
                     writer.WriteLine(ex.Message);
                 }
                 catch (Exception ex)

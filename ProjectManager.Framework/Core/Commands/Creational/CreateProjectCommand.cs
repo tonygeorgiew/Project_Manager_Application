@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 using ProjectManager.Framework.Core.Commands.Abstracts;
@@ -13,8 +14,8 @@ namespace ProjectManager.Framework.Core.Commands.Creational
     {
         private const int ParameterCountConstant = 4;
 
-        public CreateProjectCommand(ModelsFactory factory)
-            : base(factory)
+        public CreateProjectCommand(IDatabase database, ModelsFactory factory)
+            : base(database, factory)
         {
         }
 
@@ -28,8 +29,6 @@ namespace ProjectManager.Framework.Core.Commands.Creational
 
         public override string Execute(IList<string> parameters)
         {
-            this.ValidateParameters(parameters);
-
             if (this.Database.Projects.Any(x => x.Name == parameters[0]))
             {
                 throw new UserValidationException("A project with that name already exists!");

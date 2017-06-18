@@ -10,11 +10,11 @@ using ProjectManager.ConsoleClient.Contracts;
 
 namespace ProjectManager.Framework.Core.Commands.Factories
 {
-    public class CommandsFactory : ICommandsFactory
+    public class CommandFactory : ICommandFactory
     {
         private readonly IServiceLocator serviceLocator;
 
-        public CommandsFactory(IServiceLocator serviceLocator)
+        public CommandFactory(IServiceLocator serviceLocator)
         {
             Guard.WhenArgument(serviceLocator, "serviceLocator").IsNull().Throw();
 
@@ -25,7 +25,15 @@ namespace ProjectManager.Framework.Core.Commands.Factories
         {
             Guard.WhenArgument(commandName, "commandName").IsNull().Throw();
 
-            return this.serviceLocator.GetCommand(commandName);
+            try
+            {
+                return this.serviceLocator.GetCommand(commandName);
+            }
+
+            catch
+            {
+                throw new UserValidationException("Command not found!");
+            }
         }
     }
 }

@@ -10,11 +10,11 @@ namespace ProjectManager.Framework.Core.Common.Providers
 {
     public class CommandProcessor : IProcessor
     {
-        private ICommandsFactory commandsFactory;
+        private ICommandFactory commandFactory;
 
-        public CommandProcessor(ICommandsFactory commandsFactory)
+        public CommandProcessor(ICommandFactory commandFactory)
         {
-            this.commandsFactory = commandsFactory;
+            this.commandFactory = commandFactory;
         }
 
         public string ProcessCommand(string commandLine)
@@ -30,7 +30,7 @@ namespace ProjectManager.Framework.Core.Common.Providers
                 .Skip(1)
                 .ToList();
 
-            var command = this.commandsFactory.GetCommandFromString(commandName);
+            var command = this.commandFactory.GetCommandFromString(commandName);
 
             return command.Execute(commandParameters);
         }

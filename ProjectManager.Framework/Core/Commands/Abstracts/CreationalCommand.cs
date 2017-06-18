@@ -7,12 +7,20 @@ namespace ProjectManager.Framework.Core.Commands.Abstracts
 {
     public abstract class CreationalCommand : Command, ICommand
     {
-        protected readonly ModelsFactory Factory;
+        protected readonly IModelsFactory factory;
 
-        public CreationalCommand(ModelsFactory factory)
+        public CreationalCommand(IDatabase database, IModelsFactory factory)
+            :base(database)
         {
             Guard.WhenArgument(factory, "CreateProjectCommand ModelsFactory").IsNull().Throw();
-            this.Factory = factory;
+            this.factory = factory;
+        }
+        protected IModelsFactory Factory
+        {
+            get
+            {
+                return this.factory;
+            }
         }
     }
 }

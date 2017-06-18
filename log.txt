@@ -1,0 +1,6 @@
+ERROR: Command not found!
+ERROR: Invalid command parameters count!
+ERROR: Invalid command parameters count!
+FATAL: The method or operation is not implemented.
+FATAL: The method or operation is not implemented.
+ERROR: A project with that name already exists!
